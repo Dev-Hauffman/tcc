@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cewwxd2adepaf"]
+
+[ext_resource type="Script" uid="uid://bvc1iekf1tm1e" path="res://game_manager.gd" id="1_70yv6"]
+[ext_resource type="Script" uid="uid://ckem1iyrckq2g" path="res://scripts/file_processer.gd" id="2_smx3j"]
+
+[node name="GameManager" type="Node" unique_id=570837665 node_paths=PackedStringArray("file_processor")]
+script = ExtResource("1_70yv6")
+file_processor = NodePath("FileProcessor")
+
+[node name="FileProcessor" type="Node" parent="." unique_id=1846670578]
+script = ExtResource("2_smx3j")
+metadata/_custom_type_script = "uid://ckem1iyrckq2g"

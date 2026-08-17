@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://2hy3mtvyq5nu"]
+
+[ext_resource type="Script" uid="uid://ckem1iyrckq2g" path="res://scripts/file_processer.gd" id="1_sb08c"]
+
+[node name="FileProcessor" type="Node" unique_id=1369657038]
+script = ExtResource("1_sb08c")
+metadata/_custom_type_script = "uid://ckem1iyrckq2g"
