@@ -28,4 +28,4 @@ func read_levels() -> void:
 				var file_error:Error = file.get_open_error()
 				if file_error != OK:
 					print_debug("Error opening file: %s. ERROR %d" % [file_name, file_error])
-				file_processor.process_twee_file(file)
+				file_processor.process_twee_file(file, path)

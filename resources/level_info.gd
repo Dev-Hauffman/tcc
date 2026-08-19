@@ -3,7 +3,7 @@ extends Resource
 
 @export var title:String
 @export var text:String
-@export var image:CompressedTexture2D
+@export var image:ImageTexture
 @export var activate:Array[String] = []
 @export var deactivate:Array[String] = []
 @export var feedback:String
@@ -18,7 +18,7 @@ func set_text(new_text:String) -> void:
 	text = new_text
 
 
-func set_image(new_image:CompressedTexture2D) -> void:
+func set_image(new_image:ImageTexture) -> void:
 	image = new_image
 
 
