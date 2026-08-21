@@ -2,11 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bvc1iekf1tm1e" path="res://game_manager.gd" id="1_70yv6"]
 [ext_resource type="Script" uid="uid://ckem1iyrckq2g" path="res://scripts/file_processer.gd" id="2_smx3j"]
+[ext_resource type="PackedScene" uid="uid://bik2whmkuj312" path="res://scenes/main_menu.tscn" id="3_o2178"]
 
-[node name="GameManager" type="Node" unique_id=570837665 node_paths=PackedStringArray("file_processor")]
+[node name="GameManager" type="Node" unique_id=570837665 node_paths=PackedStringArray("scenes", "main_menu_scene", "file_processor")]
 script = ExtResource("1_70yv6")
+scenes = NodePath("Scenes")
+main_menu_scene = NodePath("Scenes/MainMenu")
 file_processor = NodePath("FileProcessor")
 
 [node name="FileProcessor" type="Node" parent="." unique_id=1846670578]
 script = ExtResource("2_smx3j")
 metadata/_custom_type_script = "uid://ckem1iyrckq2g"
+
+[node name="Scenes" type="Node" parent="." unique_id=637588540]
+
+[node name="MainMenu" parent="Scenes" unique_id=262822496 instance=ExtResource("3_o2178")]

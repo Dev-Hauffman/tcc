@@ -2,12 +2,13 @@ class_name FileProcessor
 extends Node
 
 
-var level_info:Array[LevelInfo] = []
 
 
-func process_twee_file(file:FileAccess, path:String) -> void:
+
+func process_twee_file(file:FileAccess, path:String) -> Level:
 	var line:String = file.get_line() 
 	var can_save:bool = false
+	var level:Level = Level.new()
 	while !file.eof_reached():
 		var node_title:String
 		var text_line:String 
@@ -67,8 +68,18 @@ func process_twee_file(file:FileAccess, path:String) -> void:
 			print_debug("Activate:%s|Deactivate:%s" % [activate_array, deactivate_array])
 			print_debug("Feedback:%s" % feedback)
 			print_debug("Connections:%s" % [connections])
+			var level_info:LevelInfo = LevelInfo.new()
+			level_info.set_title(node_title)
+			level_info.set_text(text_line)
+			level_info.set_image(loaded_image)
+			level_info.set_activate(activate_array)
+			level_info.set_deactivate(deactivate_array)
+			level_info.set_feedback(feedback)
+			level_info.set_connections(connections)
+			level.append_level(level_info)
 		can_save = false
 	print("ended")
+	return level
 
 
 func load_image(image_name:String, path:String) -> ImageTexture:

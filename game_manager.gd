@@ -2,11 +2,18 @@ class_name GameManager
 extends Node
 
 
+@export var scenes:Node
+@export var main_menu_scene:MainMenu
+
 @export var file_processor:FileProcessor
+@export var levels:Array[Level] = []
+
+var choose_level_scene:ChooseLevel
 
 
 func _ready() -> void:
 	read_levels()
+	main_menu_scene.start_button_pressed.connect(load_choose_level)
 
 
 func read_levels() -> void:
@@ -28,4 +35,16 @@ func read_levels() -> void:
 				var file_error:Error = file.get_open_error()
 				if file_error != OK:
 					print_debug("Error opening file: %s. ERROR %d" % [file_name, file_error])
-				file_processor.process_twee_file(file, path)
+				var level:Level = file_processor.process_twee_file(file, path)
+				if not level.is_empty():
+					level.add_level_title(file_name)
+					levels.append(level)
+				else:
+					print_debug("level '%s' is empty" % file_name)
+
+
+func load_choose_level() -> void:
+	choose_level_scene = load("res://scenes/choose_level.tscn").instantiate()
+	choose_level_scene.hide()
+	scenes.add_child(choose_level_scene)
+	choose_level_scene.display_levels(levels)

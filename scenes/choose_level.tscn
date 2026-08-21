@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://docx3hwq8jmmm"]
+
+[ext_resource type="Script" uid="uid://qcv2oax6hmlb" path="res://scenes/choose_level.gd" id="1_klnia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywgo4"]
+bg_color = Color(0.17254902, 0.6, 0.83137256, 1)
+
+[node name="ChooseLevel" type="Control" unique_id=1437908921 node_paths=PackedStringArray("levels_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_klnia")
+levels_container = NodePath("PanelContainer/CenterContainer/LevelsContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1861615572]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 361.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ywgo4")
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=862062222]
+layout_mode = 2
+
+[node name="LevelsContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer" unique_id=476795791]
+layout_mode = 2
