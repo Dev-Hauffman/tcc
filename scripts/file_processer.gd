@@ -2,13 +2,11 @@ class_name FileProcessor
 extends Node
 
 
-
-
-
 func process_twee_file(file:FileAccess, path:String) -> Level:
 	var line:String = file.get_line() 
 	var can_save:bool = false
 	var level:Level = Level.new()
+	var starter_scene:String
 	while !file.eof_reached():
 		var node_title:String
 		var text_line:String 
@@ -18,7 +16,11 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 		var deactivate_array:Array
 		var feedback:String
 		var connections:Array = []
-		if line.contains("::"):
+		if line.contains("\"start\":"):
+			starter_scene = line
+			starter_scene = starter_scene.erase(0, 12)
+			starter_scene = starter_scene.erase((starter_scene.length() - 2), 2)
+		elif line.contains("::"):
 			if line.contains("{"):
 				node_title = line.split("{")[0]
 				node_title = node_title.erase(0, 3)
@@ -70,6 +72,11 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 			print_debug("Connections:%s" % [connections])
 			var level_info:LevelInfo = LevelInfo.new()
 			level_info.set_title(node_title)
+			if not starter_scene.is_empty():
+				if starter_scene == node_title:
+					level_info.starter = true
+			else:
+				printerr("'starter_scene' info is empty when defining starter scene")
 			level_info.set_text(text_line)
 			level_info.set_image(loaded_image)
 			level_info.set_activate(activate_array)

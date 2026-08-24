@@ -8,6 +8,7 @@ extends Resource
 @export var deactivate:Array = []
 @export var feedback:String
 @export var connections:Array = []
+@export var starter:bool = false
 
 
 func set_title(new_title:String) -> void:

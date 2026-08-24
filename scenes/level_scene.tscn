@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b2bwiddn3jmqa"]
+
+[ext_resource type="Texture2D" uid="uid://b6jns101anamm" path="res://assets/imagem_original.jpg" id="1_386oa"]
+[ext_resource type="Script" uid="uid://cr3r2c2g53plh" path="res://scenes/level_scene.gd" id="1_bl4ss"]
+
+[node name="LevelScene" type="Node2D" unique_id=1270492568 node_paths=PackedStringArray("background_image")]
+script = ExtResource("1_bl4ss")
+background_image = NodePath("Graphics/BackgroundImage")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=221702577]
+position = Vector2(320, 180)
+
+[node name="BackgroundImage" type="Sprite2D" parent="Graphics" unique_id=333763877]
+texture = ExtResource("1_386oa")

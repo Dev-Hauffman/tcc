@@ -8,8 +8,6 @@ extends Node
 @export var file_processor:FileProcessor
 @export var levels:Array[Level] = []
 
-var choose_level_scene:ChooseLevel
-
 
 func _ready() -> void:
 	read_levels()
@@ -44,7 +42,20 @@ func read_levels() -> void:
 
 
 func load_choose_level() -> void:
-	choose_level_scene = load("res://scenes/choose_level.tscn").instantiate()
+	for child in scenes.get_children():
+		child.queue_free()
+	var choose_level_scene:ChooseLevel = load("res://scenes/choose_level.tscn").instantiate()
 	choose_level_scene.hide()
 	scenes.add_child(choose_level_scene)
 	choose_level_scene.display_levels(levels)
+	choose_level_scene.level_chosen.connect(load_level_manager)
+
+
+func load_level_manager(level:Level) -> void:
+	print_debug("loaded")
+	for child in scenes.get_children():
+		child.queue_free()
+	var level_manager:LevelManager = load("res://scenes/level_manager.tscn").instantiate()
+	scenes.add_child(level_manager)
+	level_manager.initialize_level_manager(level)
+	level_manager.load_level_scene(level.get_first_scene())

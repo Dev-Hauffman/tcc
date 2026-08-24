@@ -15,3 +15,14 @@ func append_level(level_data:LevelInfo) -> void:
 
 func is_empty() -> bool:
 	return level_info.is_empty()
+
+
+func get_first_scene() -> String:
+	var scene_name:String
+	for scene in level_info:
+		if scene.starter:
+			scene_name = scene.title
+	if scene_name.is_empty():
+		print_debug("'scene_name' is empty on 'get_first_scene' at resource class 'Level'")
+		assert(false)
+	return scene_name
