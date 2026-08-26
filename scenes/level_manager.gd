@@ -16,4 +16,5 @@ func initialize_level_manager(level:Level) -> void:
 func load_level_scene(scene_name:String) -> void:
 	for level in level_data.level_info:
 		if scene_name == level.title:
-			scene.background_image.texture = level.image
+			scene.initialize_level_scene(level)
+			#scene.background_image.texture = level.image

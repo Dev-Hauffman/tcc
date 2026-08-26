@@ -30,11 +30,11 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 					text_line = line.split("|")[1]
 					#text_line = line.erase(0, 8)
 					#text_line = text_line.erase((text_line.length()-1))
-				can_save = not text_line.is_empty()
-				if not can_save:
-					print_debug("Missing text")
+				#can_save = not text_line.is_empty()
+				#if not can_save:
+					#print_debug("Missing text")
 				line = file.get_line()
-				if line.contains("imagem|") and can_save:
+				if line.contains("imagem|"): # and can_save:
 					image_name = line.split("|")[1]
 					#image_path = line.erase(0, 9)
 					#image_path = image_path.erase((image_path.length()-1))

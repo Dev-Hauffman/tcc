@@ -16,9 +16,12 @@ script = ExtResource("1_klnia")
 levels_container = NodePath("PanelContainer/CenterContainer/LevelsContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1861615572]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 361.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ywgo4")
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=862062222]

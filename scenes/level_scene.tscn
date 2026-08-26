@@ -3,12 +3,121 @@
 [ext_resource type="Texture2D" uid="uid://b6jns101anamm" path="res://assets/imagem_original.jpg" id="1_386oa"]
 [ext_resource type="Script" uid="uid://cr3r2c2g53plh" path="res://scenes/level_scene.gd" id="1_bl4ss"]
 
-[node name="LevelScene" type="Node2D" unique_id=1270492568 node_paths=PackedStringArray("background_image")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl4ss"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.12941177, 0.023529412, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.69411767)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a74lg"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+bg_color = Color(0.12941177, 0.023529412, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.16862746, 0.827451, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="LevelScene" type="Control" unique_id=1502669244 node_paths=PackedStringArray("background_image", "image", "text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_bl4ss")
 background_image = NodePath("Graphics/BackgroundImage")
+image = NodePath("CenterContainer/Image")
+text = NodePath("HBoxContainer/Text")
 
 [node name="Graphics" type="Node2D" parent="." unique_id=221702577]
+visible = false
 position = Vector2(320, 180)
 
 [node name="BackgroundImage" type="Sprite2D" parent="Graphics" unique_id=333763877]
 texture = ExtResource("1_386oa")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1971159977]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Image" type="TextureRect" parent="CenterContainer" unique_id=15432460]
+layout_mode = 2
+texture = ExtResource("1_386oa")
+
+[node name="HBoxContainer" type="CenterContainer" parent="." unique_id=1167208795]
+custom_maximum_size = Vector2(-1, 150)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+
+[node name="Text" type="RichTextLabel" parent="HBoxContainer" unique_id=1234016794]
+custom_minimum_size = Vector2(100, 0)
+custom_maximum_size = Vector2(1000, -1)
+propagate_maximum_size = true
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_bl4ss")
+bbcode_enabled = true
+text = "[center] Testddsffsdfsdfsdfa dfdsfsf dfgdfg dfgdfgdf fdg fdgdf gfd asdasd asd asd as dsaassdasd asdasdsad as dsaasassd asasass sasaasass das saasasd as sadas das d[center]"
+fit_content = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="." unique_id=123731501]
+custom_maximum_size = Vector2(1000, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer2" unique_id=980147697]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a74lg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer2/PanelContainer" unique_id=1844708849]
+propagate_maximum_size = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+horizontal_scroll_mode = 5
+vertical_scroll_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/PanelContainer/ScrollContainer" unique_id=1097448723]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer2/PanelContainer/ScrollContainer/VBoxContainer" unique_id=13380767]
+layout_mode = 2
+size_flags_vertical = 3
+text = "test asdas das d"
