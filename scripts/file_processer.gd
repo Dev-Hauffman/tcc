@@ -15,6 +15,8 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 		var activate_array:Array
 		var deactivate_array:Array
 		var feedback:String
+		var active:bool = true
+		var button_text:String
 		var connections:Array = []
 		if line.contains("\"start\":"):
 			starter_scene = line
@@ -56,6 +58,13 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 				line = file.get_line()
 				if line.contains("feedback|") and can_save:
 					feedback = line.split("|")[1]
+				line = file.get_line()
+				if line.contains("escondido|") and can_save:
+					var hidden:String = line.split("|")[1]
+					active = true if hidden == "sim" or hidden == "Sim" else false
+				line = file.get_line()
+				if line.contains("botao|"):
+					button_text = line.split("|")[1]
 		line = file.get_line()
 		if line.contains("[[") and line.contains("]]") and can_save:
 			while line.contains("[[") and line.contains("]]"):
@@ -78,11 +87,13 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 			else:
 				printerr("'starter_scene' info is empty when defining starter scene")
 			level_info.set_text(text_line)
+			level_info.set_button_text(button_text)
 			level_info.set_image(loaded_image)
 			level_info.set_activate(activate_array)
 			level_info.set_deactivate(deactivate_array)
 			level_info.set_feedback(feedback)
 			level_info.set_connections(connections)
+			level_info.set_is_active(active)
 			level.append_level(level_info)
 		can_save = false
 	print("ended")
