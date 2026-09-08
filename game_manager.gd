@@ -42,8 +42,7 @@ func read_levels() -> void:
 
 
 func load_choose_level() -> void:
-	for child in scenes.get_children():
-		child.queue_free()
+	clear_scenes_children()
 	var choose_level_scene:ChooseLevel = load("res://scenes/choose_level.tscn").instantiate()
 	choose_level_scene.hide()
 	scenes.add_child(choose_level_scene)
@@ -53,9 +52,22 @@ func load_choose_level() -> void:
 
 func load_level_manager(level:Level) -> void:
 	print_debug("loaded")
-	for child in scenes.get_children():
-		child.queue_free()
+	clear_scenes_children()
 	var level_manager:LevelManager = load("res://scenes/level_manager.tscn").instantiate()
 	scenes.add_child(level_manager)
+	level_manager.result_scene_requested.connect(load_result_scene)
 	level_manager.initialize_level_manager(level)
 	level_manager.load_level_scene(level.get_first_scene())
+
+
+func load_result_scene(feedbacks:Array):
+	clear_scenes_children()
+	var result_scene:ResultScene = load("res://scenes/result_scene.tscn").instantiate()
+	result_scene.initialize_result_scene(feedbacks)
+	scenes.add_child(result_scene)
+	
+
+
+func clear_scenes_children() -> void:
+	for child in scenes.get_children():
+		child.queue_free()

@@ -11,6 +11,7 @@ extends Resource
 @export var connections:Array = []
 @export var starter:bool = false
 @export var is_active:bool = true
+@export var was_visited:bool = false
 
 
 func set_title(new_title:String) -> void:
@@ -47,6 +48,10 @@ func set_connections(new_connections:Array) -> void:
 
 func set_is_active(value:bool) -> void:
 	is_active = value
+
+
+func set_was_visited(value:bool) -> void:
+	was_visited = value
 
 
 func get_dialog_text() -> String:

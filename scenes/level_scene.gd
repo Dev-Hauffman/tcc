@@ -4,6 +4,7 @@ extends Control
 
 signal scene_button_pressed(level_info:LevelInfo)
 signal deactivated_scenes(deactivated:Array)
+signal result_button_pressed
 
 
 @export var background_image:Sprite2D
@@ -28,13 +29,19 @@ func initialize_level_scene(level_info:LevelInfo, level_data:Level, inactive:Arr
 func populate_buttons(level_info:LevelInfo, level_data:Level, inactive:Array) -> void:
 	for child in scene_button_container.get_children():
 		child.queue_free()
-	for connection in level_info.connections:
+	if level_info.connections.is_empty():
 		var scene_button:SceneButton = load("res://scenes/scene_button.tscn").instantiate()
-		var scene:LevelInfo = find_scene(connection, level_data, inactive)
-		if scene != null:
-			scene_button.text = scene.get_button_text()
-			scene_button.pressed.connect(func(): emit_signal("scene_button_pressed", scene))
-			scene_button_container.add_child(scene_button)
+		scene_button.text = "Ver resultados"
+		scene_button.pressed.connect(func(): emit_signal("result_button_pressed"))
+		scene_button_container.add_child(scene_button)
+	else:
+		for connection in level_info.connections:
+			var scene_button:SceneButton = load("res://scenes/scene_button.tscn").instantiate()
+			var scene:LevelInfo = find_scene(connection, level_data, inactive)
+			if scene != null:
+				scene_button.text = scene.get_button_text()
+				scene_button.pressed.connect(func(): emit_signal("scene_button_pressed", scene))
+				scene_button_container.add_child(scene_button)
 
 
 func find_scene(level_name:String, level_data:Level, inactive:Array) -> LevelInfo:

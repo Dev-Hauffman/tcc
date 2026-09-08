@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://di4fcutp2v3c0"]
+
+[ext_resource type="Script" uid="uid://cwwj47dqbah0g" path="res://scenes/result_scene.gd" id="1_yt4ms"]
+[ext_resource type="PackedScene" uid="uid://cnts8rcb3hmc3" path="res://scenes/feeback_label.tscn" id="2_yy2nw"]
+
+[node name="ResultScene" type="Control" unique_id=1665173362 node_paths=PackedStringArray("default_feedback", "feedback_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yt4ms")
+default_feedback = NodePath("PanelContainer/CenterContainer/PanelContainer/VBoxContainer/ScrollContainer/FeedbackContainer/DefaultLabel")
+feedback_container = NodePath("PanelContainer/CenterContainer/PanelContainer/VBoxContainer/ScrollContainer/FeedbackContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1681570237]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=364426085]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/CenterContainer" unique_id=1512747735]
+custom_maximum_size = Vector2(-1, 500)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/PanelContainer" unique_id=1687229228]
+layout_mode = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=1694383581]
+layout_mode = 2
+size_flags_vertical = 0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 5
+
+[node name="FeedbackContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=983730401]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="DefaultLabel" parent="PanelContainer/CenterContainer/PanelContainer/VBoxContainer/ScrollContainer/FeedbackContainer" unique_id=1766463661 instance=ExtResource("2_yy2nw")]
+layout_mode = 2
+
+[node name="ReturnMainMenuButton" type="Button" parent="PanelContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=2042896034]
+layout_mode = 2
+text = "Voltar ao menu principal"

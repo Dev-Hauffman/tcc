@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cnts8rcb3hmc3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.24676687, 0.7036168, 0.37987387, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[node name="RichTextLabel" type="RichTextLabel" unique_id=1766463661]
+custom_maximum_size = Vector2(300, -1)
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xrivr")
+bbcode_enabled = true
+text = "[center]Sem feedback[center]"
+fit_content = true
+scroll_active = false
