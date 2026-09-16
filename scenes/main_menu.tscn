@@ -1,9 +1,26 @@
 [gd_scene format=3 uid="uid://bik2whmkuj312"]
 
 [ext_resource type="Script" uid="uid://dyd77cvc8ooeg" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://ctlag5ei2kcbx" path="res://assets/Main_menu.png" id="2_bqqt6"]
+[ext_resource type="FontFile" uid="uid://dpbkwgtqrckel" path="res://assets/visitor1.ttf" id="3_wu84c"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
-bg_color = Color(0.17254902, 0.6, 0.83137256, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xrivr"]
+texture = ExtResource("2_bqqt6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13qdw"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.27450982, 0.08627451, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="MainMenu" type="Control" unique_id=262822496]
 layout_mode = 3
@@ -21,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xrivr")
+theme_override_styles/panel = SubResource("StyleBoxTexture_xrivr")
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=2017917388]
 layout_mode = 2
@@ -31,6 +48,10 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer" unique_id=203694008]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8117647, 0.8509804, 0.9137255, 1)
+theme_override_fonts/font = ExtResource("3_wu84c")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_13qdw")
 text = "Iniciar"
 
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

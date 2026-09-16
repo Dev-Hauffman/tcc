@@ -68,6 +68,7 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 		line = file.get_line()
 		if line.contains("[[") and line.contains("]]") and can_save:
 			while line.contains("[[") and line.contains("]]"):
+				line = line.rstrip(" ")
 				line = line.erase(0, 2)
 				line = line.erase((line.length() - 2), 2)
 				connections.append(line)

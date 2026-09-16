@@ -106,19 +106,31 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a74lg")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer2/PanelContainer" unique_id=1844708849]
-propagate_maximum_size = true
-clip_contents = false
+custom_maximum_size = Vector2(1000, -1)
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_scroll_mode = 5
-vertical_scroll_mode = 5
 
 [node name="SceneButtonContainer" type="VBoxContainer" parent="CenterContainer2/PanelContainer/ScrollContainer" unique_id=1097448723]
+custom_maximum_size = Vector2(1000, -1)
+propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 alignment = 1
 
 [node name="SceneButton" parent="CenterContainer2/PanelContainer/ScrollContainer/SceneButtonContainer" unique_id=604586292 instance=ExtResource("3_a74lg")]
-visible = false
 layout_mode = 2
+text = "Ação: (Consultar histórico)"
+
+[node name="SceneButton2" parent="CenterContainer2/PanelContainer/ScrollContainer/SceneButtonContainer" unique_id=76026498 instance=ExtResource("3_a74lg")]
+layout_mode = 2
+text = "Ação: \"Dispensar medicação\""
+
+[node name="SceneButton3" parent="CenterContainer2/PanelContainer/ScrollContainer/SceneButtonContainer" unique_id=860501912 instance=ExtResource("3_a74lg")]
+layout_mode = 2
+text = "Falar para Roberto: \"Bisoprolol deve ser tomado regularmente e não deve ser parado repentinamente\""
+
+[node name="SceneButton4" parent="CenterContainer2/PanelContainer/ScrollContainer/SceneButtonContainer" unique_id=1558454274 instance=ExtResource("3_a74lg")]
+layout_mode = 2
+text = "Falar para Roberto: \"Você pode sentir um leve aumento dos sintomas com o aumento da dose. Se os sintomas forem severos ou durarem mais que alguns dias, fale com o seu médico\""
