@@ -60,12 +60,22 @@ func load_level_manager(level:Level) -> void:
 	level_manager.load_level_scene(level.get_first_scene())
 
 
-func load_result_scene(feedbacks:Array):
+func load_result_scene(feedbacks:Array) -> void:
 	clear_scenes_children()
 	var result_scene:ResultScene = load("res://scenes/result_scene.tscn").instantiate()
+	result_scene.main_menu_requested.connect(load_main_menu)
 	result_scene.initialize_result_scene(feedbacks)
 	scenes.add_child(result_scene)
-	
+
+
+func load_main_menu() -> void:
+	clear_scenes_children()
+	if main_menu_scene != null:
+		scenes.add_child(main_menu_scene)
+	else:
+		var main_menu:MainMenu = load("res://scenes/main_menu.tscn").instantiate()
+		main_menu.start_button_pressed.connect(load_choose_level)
+		scenes.add_child(main_menu)
 
 
 func clear_scenes_children() -> void:

@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://di4fcutp2v3c0"]
 
 [ext_resource type="Script" uid="uid://cwwj47dqbah0g" path="res://scenes/result_scene.gd" id="1_yt4ms"]
+[ext_resource type="Texture2D" uid="uid://dekuo6x0yrvl4" path="res://assets/titulo.png" id="2_rxjlm"]
 [ext_resource type="PackedScene" uid="uid://cnts8rcb3hmc3" path="res://scenes/feeback_label.tscn" id="2_yy2nw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c1abd"]
+texture = ExtResource("2_rxjlm")
 
 [node name="ResultScene" type="Control" unique_id=1665173362 node_paths=PackedStringArray("default_feedback", "feedback_container")]
 layout_mode = 3
@@ -21,12 +25,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_c1abd")
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=364426085]
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/CenterContainer" unique_id=1512747735]
-custom_maximum_size = Vector2(-1, 500)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/PanelContainer" unique_id=1687229228]
@@ -40,6 +44,7 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 5
 
 [node name="FeedbackContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=983730401]
+custom_maximum_size = Vector2(-1, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -51,3 +56,5 @@ layout_mode = 2
 [node name="ReturnMainMenuButton" type="Button" parent="PanelContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=2042896034]
 layout_mode = 2
 text = "Voltar ao menu principal"
+
+[connection signal="pressed" from="PanelContainer/CenterContainer/PanelContainer/VBoxContainer/ReturnMainMenuButton" to="." method="_on_return_main_menu_button_pressed"]
