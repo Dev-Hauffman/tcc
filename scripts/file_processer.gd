@@ -98,6 +98,10 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 			level.append_level(level_info)
 		can_save = false
 	print("ended")
+	##
+	#var save_path = "user://default.tres"
+	#var error = ResourceSaver.save(level, save_path)
+	##
 	return level
 
 

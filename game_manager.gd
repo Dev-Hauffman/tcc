@@ -56,7 +56,7 @@ func load_level_manager(level:Level) -> void:
 	var level_manager:LevelManager = load("res://scenes/level_manager.tscn").instantiate()
 	scenes.add_child(level_manager)
 	level_manager.result_scene_requested.connect(load_result_scene)
-	level_manager.initialize_level_manager(level)
+	level_manager.initialize_level_manager(level.duplicate(true))
 	level_manager.load_level_scene(level.get_first_scene())
 
 

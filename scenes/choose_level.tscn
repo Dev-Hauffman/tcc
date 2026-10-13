@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://docx3hwq8jmmm"]
 
 [ext_resource type="Script" uid="uid://qcv2oax6hmlb" path="res://scenes/choose_level.gd" id="1_klnia"]
-[ext_resource type="Texture2D" uid="uid://dekuo6x0yrvl4" path="res://assets/titulo.png" id="2_54dx0"]
+[ext_resource type="Texture2D" uid="uid://b7xm4p2hy4m4y" path="res://assets/titulo2.png" id="2_54dx0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5751s"]
 texture = ExtResource("2_54dx0")
@@ -33,9 +33,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="." unique_id=61097726]
 layout_mode = 0
-offset_left = 520.0
-offset_top = 234.0
-offset_right = 751.0
-offset_bottom = 268.0
+offset_left = 527.0
+offset_top = 266.0
+offset_right = 758.0
+offset_bottom = 300.0
 theme_override_font_sizes/font_size = 24
 text = "Escolha um cenário:"
