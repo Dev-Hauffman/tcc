@@ -12,6 +12,8 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 		var text_line:String 
 		var image_name:String
 		var loaded_image:ImageTexture
+		var sound_name:String
+		var loaded_sound:AudioStreamWAV
 		var activate_array:Array
 		var deactivate_array:Array
 		var feedback:String
@@ -46,23 +48,28 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 				if not can_save:
 					print_debug("missing image")
 				line = file.get_line()
-				if line.contains("ativar|") and can_save:
-					var activate_info:String = line.split("|")[1]
-					if not activate_info.is_empty():
-						activate_array = activate_info.split(",")
+				if line.contains("som|"):
+					sound_name = line.split("|")[1]
+					if not sound_name.is_empty():
+						loaded_sound = load_sound(sound_name, path)
 				line = file.get_line()
-				if line.contains("desativar|") and can_save:
-					var deactivate_info:String = line.split("|")[1]
-					if not deactivate_info.is_empty():
-						deactivate_array = deactivate_info.split(",")
-				line = file.get_line()
+				#if line.contains("ativar|") and can_save:
+					#var activate_info:String = line.split("|")[1]
+					#if not activate_info.is_empty():
+						#activate_array = activate_info.split(",")
+				#line = file.get_line()
+				#if line.contains("desativar|") and can_save:
+					#var deactivate_info:String = line.split("|")[1]
+					#if not deactivate_info.is_empty():
+						#deactivate_array = deactivate_info.split(",")
+				#line = file.get_line()
 				if line.contains("feedback|") and can_save:
 					feedback = line.split("|")[1]
 				line = file.get_line()
-				if line.contains("escondido|") and can_save:
-					var hidden:String = line.split("|")[1]
-					active = true if hidden == "sim" or hidden == "Sim" else false
-				line = file.get_line()
+				#if line.contains("escondido|") and can_save:
+					#var hidden:String = line.split("|")[1]
+					#active = true if hidden == "sim" or hidden == "Sim" else false
+				#line = file.get_line()
 				if line.contains("botao|"):
 					button_text = line.split("|")[1]
 		line = file.get_line()
@@ -90,6 +97,7 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 			level_info.set_text(text_line)
 			level_info.set_button_text(button_text)
 			level_info.set_image(loaded_image)
+			level_info.set_sound(loaded_sound)
 			level_info.set_activate(activate_array)
 			level_info.set_deactivate(deactivate_array)
 			level_info.set_feedback(feedback)
@@ -120,3 +128,19 @@ func load_image(image_name:String, path:String) -> ImageTexture:
 		return
 	var texture_image = ImageTexture.create_from_image(image)
 	return texture_image
+
+
+func load_sound(sound_name:String, path:String) -> AudioStreamWAV:
+	#var dir:DirAccess = DirAccess.open(path)
+	#if dir:
+		#for file_name in dir.get_files():
+			#print(file_name)
+	var full_path:String = path + "/" + sound_name
+	if not FileAccess.file_exists(full_path):
+		printerr("Sound file %s does not exist on path: %s" % [sound_name, path])
+		return
+	var sound:AudioStreamWAV = AudioStreamWAV.load_from_file(full_path)
+	if sound == null:
+		printerr("Failed to load sound %s" % sound_name)
+		return
+	return sound

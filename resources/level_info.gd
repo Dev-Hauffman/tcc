@@ -5,6 +5,7 @@ extends Resource
 @export var dialog_text:String
 @export var button_text:String
 @export var image:ImageTexture
+@export var sound:AudioStreamWAV
 @export var activate:Array = []
 @export var deactivate:Array = []
 @export var feedback:String
@@ -28,6 +29,10 @@ func set_button_text(new_text:String) -> void:
 
 func set_image(new_image:ImageTexture) -> void:
 	image = new_image
+
+
+func set_sound(new_sound:AudioStreamWAV) -> void:
+	sound = new_sound
 
 
 func set_activate(new_activate:Array) -> void:

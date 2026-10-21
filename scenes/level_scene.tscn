@@ -39,7 +39,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="LevelScene" type="Control" unique_id=1502669244 node_paths=PackedStringArray("background_image", "image", "text", "scene_button_container")]
+[node name="LevelScene" type="Control" unique_id=1502669244 node_paths=PackedStringArray("background_image", "image", "text", "scene_button_container", "audio_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,6 +51,7 @@ background_image = NodePath("Graphics/BackgroundImage")
 image = NodePath("CenterContainer/Image")
 text = NodePath("MarginContainer/HBoxContainer/HBoxContainer/Text")
 scene_button_container = NodePath("MarginContainer/HBoxContainer/CenterContainer2/PanelContainer/VBoxContainer/ScrollContainer/SceneButtonContainer")
+audio_player = NodePath("AudioPlayer")
 
 [node name="Graphics" type="Node2D" parent="." unique_id=221702577]
 visible = false
@@ -153,3 +154,5 @@ text = "Falar para Roberto: \"Bisoprolol deve ser tomado regularmente e não dev
 [node name="SceneButton4" parent="MarginContainer/HBoxContainer/CenterContainer2/PanelContainer/VBoxContainer/ScrollContainer/SceneButtonContainer" unique_id=1558454274 instance=ExtResource("3_a74lg")]
 layout_mode = 2
 text = "Falar para Roberto: \"Você pode sentir um leve aumento dos sintomas com o aumento da dose. Se os sintomas forem severos ou durarem mais que alguns dias, fale com o seu médico\""
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=982762379]

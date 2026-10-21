@@ -11,11 +11,14 @@ signal result_button_pressed
 @export var image:TextureRect
 @export var text:RichTextLabel
 @export var scene_button_container:VBoxContainer
+@export var audio_player:AudioStreamPlayer
 
 
 func initialize_level_scene(level_info:LevelInfo, level_data:Level, inactive:Array) -> void:
 	background_image.texture = level_info.image
 	image.texture = level_info.image
+	audio_player.stream = level_info.sound
+	audio_player.play()
 	if level_info.get_dialog_text().is_empty():
 		text.hide()
 	else:
