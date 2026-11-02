@@ -12,13 +12,28 @@ signal result_button_pressed
 @export var text:RichTextLabel
 @export var scene_button_container:VBoxContainer
 @export var audio_player:AudioStreamPlayer
+@export var video_player:VideoStreamPlayer
+@export var audio_button:Button
+@export var video_button:Button
 
 
 func initialize_level_scene(level_info:LevelInfo, level_data:Level, inactive:Array) -> void:
 	background_image.texture = level_info.image
 	image.texture = level_info.image
-	audio_player.stream = level_info.sound
-	audio_player.play()
+	if level_info.sound:
+		audio_button.show()
+		audio_player.stream = level_info.sound
+		audio_player.play()
+	else:
+		audio_button.hide()
+	if level_info.video:
+		video_button.show()
+		video_player.stream = level_info.video
+		video_player.show()
+		video_player.finished.connect(func(): video_player.hide())
+		video_player.play()
+	else:
+		video_button.hide()
 	if level_info.get_dialog_text().is_empty():
 		text.hide()
 	else:
@@ -56,3 +71,16 @@ func find_scene(level_name:String, level_data:Level, inactive:Array) -> LevelInf
 		if scene.title == level_name:
 				result = scene
 	return result
+
+
+func _on_audio_button_pressed() -> void:
+	if not audio_player.playing:
+		audio_player.play()
+
+
+func _on_video_button_pressed() -> void:
+	if not video_player.is_playing():
+		print_debug("entered")
+		video_player.show()
+		video_player.play()
+		

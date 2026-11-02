@@ -13,7 +13,9 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 		var image_name:String
 		var loaded_image:ImageTexture
 		var sound_name:String
+		var video_name:String
 		var loaded_sound:AudioStreamWAV
+		var loaded_video:VideoStream
 		var activate_array:Array
 		var deactivate_array:Array
 		var feedback:String
@@ -52,6 +54,11 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 					sound_name = line.split("|")[1]
 					if not sound_name.is_empty():
 						loaded_sound = load_sound(sound_name, path)
+				line = file.get_line()
+				if line.contains("video|"):
+					video_name = line.split("|")[1]
+					if not video_name.is_empty():
+						loaded_video = load_video(video_name, path)
 				line = file.get_line()
 				#if line.contains("ativar|") and can_save:
 					#var activate_info:String = line.split("|")[1]
@@ -98,6 +105,7 @@ func process_twee_file(file:FileAccess, path:String) -> Level:
 			level_info.set_button_text(button_text)
 			level_info.set_image(loaded_image)
 			level_info.set_sound(loaded_sound)
+			level_info.set_video(loaded_video)
 			level_info.set_activate(activate_array)
 			level_info.set_deactivate(deactivate_array)
 			level_info.set_feedback(feedback)
@@ -144,3 +152,19 @@ func load_sound(sound_name:String, path:String) -> AudioStreamWAV:
 		printerr("Failed to load sound %s" % sound_name)
 		return
 	return sound
+
+
+func load_video(video_name:String, path:String) -> VideoStream:
+	#var dir:DirAccess = DirAccess.open(path)
+	#if dir:
+		#for file_name in dir.get_files():
+			#print(file_name)
+	var full_path:String = path + "/" + video_name
+	if not FileAccess.file_exists(full_path):
+		printerr("Video file %s does not exist on path: %s" % [video_name, path])
+		return
+	var video:VideoStream = ResourceLoader.load(full_path) as VideoStream
+	if video == null:
+		printerr("Failed to load video %s" % video_name)
+		return
+	return video

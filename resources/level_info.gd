@@ -6,6 +6,7 @@ extends Resource
 @export var button_text:String
 @export var image:ImageTexture
 @export var sound:AudioStreamWAV
+@export var video:VideoStream
 @export var activate:Array = []
 @export var deactivate:Array = []
 @export var feedback:String
@@ -33,6 +34,10 @@ func set_image(new_image:ImageTexture) -> void:
 
 func set_sound(new_sound:AudioStreamWAV) -> void:
 	sound = new_sound
+
+
+func set_video(new_video:VideoStream) -> void:
+	video = new_video
 
 
 func set_activate(new_activate:Array) -> void:

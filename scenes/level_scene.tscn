@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cr3r2c2g53plh" path="res://scenes/level_scene.gd" id="1_bl4ss"]
 [ext_resource type="PackedScene" uid="uid://csqs8r4x4krxc" path="res://scenes/scene_button.tscn" id="3_a74lg"]
 [ext_resource type="Texture2D" uid="uid://cajcsg5c1tygk" path="res://assets/counter.png" id="3_c8xsp"]
+[ext_resource type="Texture2D" uid="uid://cxrfktlwh7vb4" path="res://assets/icons8-sound-50.png" id="5_eohcs"]
+[ext_resource type="Texture2D" uid="uid://caoas8arboav6" path="res://assets/icons8-video-50.png" id="6_2m3ut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl4ss"]
 content_margin_left = 20.0
@@ -39,7 +41,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="LevelScene" type="Control" unique_id=1502669244 node_paths=PackedStringArray("background_image", "image", "text", "scene_button_container", "audio_player")]
+[node name="LevelScene" type="Control" unique_id=1502669244 node_paths=PackedStringArray("background_image", "image", "text", "scene_button_container", "audio_player", "video_player", "audio_button", "video_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +54,9 @@ image = NodePath("CenterContainer/Image")
 text = NodePath("MarginContainer/HBoxContainer/HBoxContainer/Text")
 scene_button_container = NodePath("MarginContainer/HBoxContainer/CenterContainer2/PanelContainer/VBoxContainer/ScrollContainer/SceneButtonContainer")
 audio_player = NodePath("AudioPlayer")
+video_player = NodePath("VideoStreamPlayer")
+audio_button = NodePath("HBoxContainer/AudioButton")
+video_button = NodePath("HBoxContainer/VideoButton")
 
 [node name="Graphics" type="Node2D" parent="." unique_id=221702577]
 visible = false
@@ -156,3 +161,31 @@ layout_mode = 2
 text = "Falar para Roberto: \"Você pode sentir um leve aumento dos sintomas com o aumento da dose. Se os sintomas forem severos ou durarem mais que alguns dias, fale com o seu médico\""
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=982762379]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1546296628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=820973798]
+layout_mode = 0
+offset_left = 1142.0
+offset_top = 652.0
+offset_right = 1262.0
+offset_bottom = 710.0
+pivot_offset = Vector2(76, 95)
+
+[node name="AudioButton" type="Button" parent="HBoxContainer" unique_id=1763992482]
+layout_mode = 2
+icon = ExtResource("5_eohcs")
+
+[node name="VideoButton" type="Button" parent="HBoxContainer" unique_id=104711139]
+layout_mode = 2
+icon = ExtResource("6_2m3ut")
+
+[connection signal="pressed" from="HBoxContainer/AudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VideoButton" to="." method="_on_video_button_pressed"]
