@@ -17,6 +17,9 @@ func _ready() -> void:
 func read_levels() -> void:
 	print_debug("reading levels")
 	var path:String = OS.get_user_data_dir()
+	if OS.has_feature("standalone"):
+		# Exported game: use the folder containing the executable
+		path = OS.get_executable_path().get_base_dir()
 	print_debug("System path: " + path)
 	var dir:DirAccess = DirAccess.open(path)
 	var dir_error:Error = dir.get_open_error()
